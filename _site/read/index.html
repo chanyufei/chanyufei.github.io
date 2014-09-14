@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="<span>Action</span> speak louder than words.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=10.0">
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/syntax.css">
+<link rel="stylesheet" href="../fancybox/source/jquery.fancybox.css">
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40649820-1', 'umanitoba.ca');
+  ga('send', 'pageview');
+</script>
+<script src="../fancybox/lib/jquery-1.10.1.min.js"></script>
+<script src="../fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+<script src="../fancybox/source/jquery.fancybox.js"></script>
+<script src="../fancybox/source/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			 *  Simple image gallery. Uses default settings
+			 */
+
+			$(".fancybox-frame").fancybox({
+    				width  : 1200,
+    				height : 1000,
+    			type   :'iframe'
+			});
+
+			/*
+			 *  Different effects
+			 */
+
+
+
+			// Change title type, overlay closing speed
+			$(".fancybox-effects-a").fancybox({
+				helpers: {
+					title : {
+						type : 'outside'
+					},
+					overlay : {
+						speedOut : 0
+					}
+				}
+			});
+
+			// Disable opening and closing animations, change title type
+			$(".fancybox-effects-b").fancybox({
+				openEffect  : 'none',
+				closeEffect	: 'none',
+
+				helpers : {
+					title : {
+						type : 'over'
+					}
+				}
+			});
+
+			// Set custom style, close if clicked, change title type and overlay color
+			$(".fancybox-effects-c").fancybox({
+				wrapCSS    : 'fancybox-custom',
+				closeClick : true,
+
+				openEffect : 'none',
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					overlay : {
+						css : {
+							'background' : 'rgba(238,238,238,0.85)'
+						}
+					}
+				}
+			});
+
+			// Remove padding, set opening and closing animations, close if clicked and disable overlay
+			$(".fancybox-effects-d").fancybox({
+				padding: 0,
+
+				openEffect : 'elastic',
+				openSpeed  : 150,
+
+				closeEffect : 'elastic',
+				closeSpeed  : 150,
+
+				closeClick : true,
+
+				helpers : {
+					overlay : null
+				}
+			});
+
+			/*
+			 *  Button helper. Disable animations, hide close button, change title type and content
+			 */
+
+			$('.fancybox-buttons').fancybox({
+				openEffect  : 'none',
+				closeEffect : 'none',
+
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					buttons	: {}
+				},
+
+				afterLoad : function() {
+					this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+				}
+			});
+
+
+			/*
+			 *  Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+			 */
+
+			$('.fancybox-thumbs').fancybox({
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+				arrows    : false,
+				nextClick : true,
+
+				helpers : {
+					thumbs : {
+						width  : 50,
+						height : 50
+					}
+				}
+			});
+
+			/*
+			 *  Media helper. Group items, disable animations, hide arrows, enable media and button helpers.
+			*/
+			$('.fancybox-media')
+				.attr('rel', 'media-gallery')
+				.fancybox({
+					openEffect : 'none',
+					closeEffect : 'none',
+					prevEffect : 'none',
+					nextEffect : 'none',
+
+					arrows : false,
+					helpers : {
+						media : {},
+						buttons : {}
+					}
+				});
+
+			/*
+			 *  Open manually
+			 */
+
+			$("#fancybox-manual-a").click(function() {
+				$.fancybox.open('1_b.jpg');
+			});
+
+			$("#fancybox-manual-b").click(function() {
+				$.fancybox.open({
+					href : 'iframe.html',
+					type : 'iframe',
+					padding : 5
+				});
+			});
+
+			$("#fancybox-manual-c").click(function() {
+				$.fancybox.open([
+					{
+						href : '1_b.jpg',
+						title : 'My title'
+					}, {
+						href : '2_b.jpg',
+						title : '2nd title'
+					}, {
+						href : '3_b.jpg'
+					}
+				], {
+					helpers : {
+						thumbs : {
+							width: 75,
+							height: 50
+						}
+					}
+				});
+			});
+
+
+		});
+	</script>
+		<title>Yufei Chen</title>
+	</head>
+	
+	<body class="home">
+		<!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+    	<div id="wrapper" class="clearfix">
+    		<header id="header" class="clearfix">
+	<div class="inner clearfix">
+		<nav id="main-nav" class="fadeInDown animated">
+			<ul>
+	<li class="home"><a href="/">Home</a><span> / </span></li>
+	<li class="publication"><a href="/publication">Publication</a><span> / </span></li>
+	<li class="read"><a href="/read">Read</a><span> / </span></li>
+	<li class="wiki"><a href="/wiki">Wiki</a><span> / </span></li>
+    <li class="cv"><a class="fancybox-frame fancybox.iframe" href="/files/cv.pdf">Full Vita</a><span> / </span></li>
+	<li class="blog"><a href="/blog">Blog</a></li>
+</ul>
+
+		</nav>
+	</div>
+</header>
+    		  		<section id="about" class="inner clearfix">
+
+<ul>
+  <!--Vaccinology Principles and Practice-->
+  <li><a href="http://site.ebrary.com.proxy2.lib.umanitoba.ca/lib/umanitoba/docDetail.action?docID=10580247" target="_blank"><img src="/images/vpp-2012.png" style="width: 40px; height: 50px;">&nbsp</img> Vaccinology Principles and Practice (2012)</a></li></br> 
+
+  <!--New Prevention Technologies and Vaccine Development-->
+  <li><a href="http://site.ebrary.com.proxy2.lib.umanitoba.ca/lib/umanitoba/docDetail.action?docID=10406171" target="_blank"><img src="/images/nptvd-2010.png" style="width: 40px; height: 50px;">&nbsp</img> New Prevention Technologies and Vaccine Development (2010)</a> </li></br>
+
+  <!--Development of Vaccines - from Discovery to Clinic Testing-->
+  <li><a href="http://site.ebrary.com.proxy2.lib.umanitoba.ca/lib/umanitoba/docDetail.action?docID=10484637" target="_blank"><img src="/images/DVDCT-2011.png" style="width: 40px; height: 50px;">&nbsp</img> Development of Vaccines - from Discovery to Clinic Testing (2011)</a> </li></br>
+
+  <!--Polyurethane Elastomers - From Morphology to Mechanical Aspects-->
+  <li><a href="http://link.springer.com.proxy2.lib.umanitoba.ca/book/10.1007/978-3-7091-0514-6/page/1" target="_blank"><img src="http://i.ebayimg.com/00/$T2eC16d,!)kE9s4,BL)rBRVncK78sQ~~_35.JPG" style="width: 40px; height: 50px;">&nbsp</img> Polyurethane Elastomers - From Morphology to Mechanical Aspects (2011)</a> </li></br>
+
+  <!--Castable Polyurethane Elastomers-->
+  <li><a href="http://site.ebrary.com.proxy2.lib.umanitoba.ca/lib/umanitoba/docDetail.action?docID=10228593" target="_blank"><img src="http://bks9.books.google.ca/books?id=zfGNooITxxMC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71oaljussgE0UHVjEdfvKT5mhgcXsVoeiI8ADJw6dMRYVCuKilK_cjnhrXj0qDHpQ7KlqVMS-MHueXrP6Hn4evjTAYux1o2OSeWlSm7xCWRzLpRrXTq_H357G6wbSix5lShOV1-" style="width: 40px; height: 50px;">&nbsp</img> Castable Polyurethane Elastomers (2008)</a> </li></br>
+
+  <!--Castable Polyurethane Elastomers-->
+  <li><a href="http://chimera.labs.oreilly.com/books/1230000000561/index.html" target="_blank"><img src="http://lt-file.b0.upaiyun.com/files/2013/06/gpg.png" style="width: 40px; height: 50px;">&nbsp</img> Git Pocket Guide (2013)</a> </li>
+
+</ul>
+
+<hr style="height: 2px; width: 100%;">
+<!--Twitter-->
+                &nbsp;&nbsp; <a class="twitter-timeline" data-theme="light" href="https://twitter.com/search?q=%23andyresearch" width="600" height="300" data-link-color="#d61a43" data-widget-id="360417897622929411" data-chrome="nofooter noborders noscrollbar transparent">Tweets</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section> 
+ 		</div> <!-- #wrapper -->
+ 		<footer id="footer" class="clearfix">
+  <div class="inner clearfix">
+    <div class="col col-1">
+      <nav>
+        <ul>
+
+        </ul>
+      </nav>
+      <p class="copyright">&#169; 2013 Yufei(Andy) Chen - powered by <a href="http://jekyllrb.com/">Jekyll</a> and theme forked from <a href="https://github.com/imwithye/bretty/">Bretty</a></p> 
+    </div>
+    
+    <div class="col col-2">
+		<ul class="social">
+	<li><a href="https://twitter.com/C_YF" target="_blank"><i class="ss-icon ss-social">Twitter</i></a></li>
+	<li><a href="https://github.com/chanyufei" target="_blank"><i class="ss-icon ss-social">Github</i></a></li>
+	<li><a href="mailto:umche355@myumanitoba.ca" target="_blank"><i class="ss-icon ss-social">Email</i></a></li>
+</ul>
+
+    </div>
+    <a href="#header" class="back-to-top">Back to Top</a>
+  </div>
+</footer>
+
+ 		<script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.8.1.min.js"><\/script>')</script>
+<script src="/js/vendor/modernizr-2.6.1.min.js"></script>
+
+<script src="/fonts/ss-social.js"></script>
+
+ 	</body>
+ </html>
