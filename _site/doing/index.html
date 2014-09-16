@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+
+		<!-- Le styles -->
+		<link rel="stylesheet" href="../css/style.css">
+		<link rel="stylesheet" href="../css/syntax.css">
+		<link rel="stylesheet" href="../fancybox/source/jquery.fancybox.css">
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Ubuntu:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!-- Script -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script src="../js/scripts.js"></script>
+		<script>
+  			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ 			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  			ga('create', 'UA-40649820-1', 'chanyufei.com');
+  			ga('send', 'pageview');
+
+		</script>
+		<script src="../fancybox/lib/jquery-1.10.1.min.js"></script>
+		<script src="../fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+		<script src="../fancybox/source/jquery.fancybox.js"></script>
+		<script src="../fancybox/source/jquery.fancybox.pack.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+			/*
+			 *  Simple image gallery. Uses default settings
+			 */
+
+			$(".fancybox-frame").fancybox({
+    				width  : 1200,
+    				height : 1000,
+    			type   :'iframe'
+			});
+
+			/*
+			 *  Different effects
+			 */
+
+
+
+			// Change title type, overlay closing speed
+			$(".fancybox-effects-a").fancybox({
+				helpers: {
+					title : {
+						type : 'outside'
+					},
+					overlay : {
+						speedOut : 0
+					}
+				}
+			});
+
+			// Disable opening and closing animations, change title type
+			$(".fancybox-effects-b").fancybox({
+				openEffect  : 'none',
+				closeEffect	: 'none',
+
+				helpers : {
+					title : {
+						type : 'over'
+					}
+				}
+			});
+
+			// Set custom style, close if clicked, change title type and overlay color
+			$(".fancybox-effects-c").fancybox({
+				wrapCSS    : 'fancybox-custom',
+				closeClick : true,
+
+				openEffect : 'none',
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					overlay : {
+						css : {
+							'background' : 'rgba(238,238,238,0.85)'
+						}
+					}
+				}
+			});
+
+			// Remove padding, set opening and closing animations, close if clicked and disable overlay
+			$(".fancybox-effects-d").fancybox({
+				padding: 0,
+
+				openEffect : 'elastic',
+				openSpeed  : 150,
+
+				closeEffect : 'elastic',
+				closeSpeed  : 150,
+
+				closeClick : true,
+
+				helpers : {
+					overlay : null
+				}
+			});
+
+			/*
+			 *  Button helper. Disable animations, hide close button, change title type and content
+			 */
+
+			$('.fancybox-buttons').fancybox({
+				openEffect  : 'none',
+				closeEffect : 'none',
+
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					buttons	: {}
+				},
+
+				afterLoad : function() {
+					this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+				}
+			});
+
+
+			/*
+			 *  Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+			 */
+
+			$('.fancybox-thumbs').fancybox({
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+				arrows    : false,
+				nextClick : true,
+
+				helpers : {
+					thumbs : {
+						width  : 50,
+						height : 50
+					}
+				}
+			});
+
+			/*
+			 *  Media helper. Group items, disable animations, hide arrows, enable media and button helpers.
+			*/
+			$('.fancybox-media')
+				.attr('rel', 'media-gallery')
+				.fancybox({
+					openEffect : 'none',
+					closeEffect : 'none',
+					prevEffect : 'none',
+					nextEffect : 'none',
+
+					arrows : false,
+					helpers : {
+						media : {},
+						buttons : {}
+					}
+				});
+
+			/*
+			 *  Open manually
+			 */
+
+			$("#fancybox-manual-a").click(function() {
+				$.fancybox.open('1_b.jpg');
+			});
+
+			$("#fancybox-manual-b").click(function() {
+				$.fancybox.open({
+					href : 'iframe.html',
+					type : 'iframe',
+					padding : 5
+				});
+			});
+
+			$("#fancybox-manual-c").click(function() {
+				$.fancybox.open([
+					{
+						href : '1_b.jpg',
+						title : 'My title'
+					}, {
+						href : '2_b.jpg',
+						title : '2nd title'
+					}, {
+						href : '3_b.jpg'
+					}
+				], {
+					helpers : {
+						thumbs : {
+							width: 75,
+							height: 50
+						}
+					}
+				});
+			});
+
+
+		});
+	</script>
+		<title>Yufei(Andy) Chen</title>
+	</head>
+	
+	<body class="home">
+		<!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+    	<div id="wrapper" class="clearfix">
+    		<header id="header" class="clearfix">
+	<div class="inner clearfix container-fluid">
+		<nav id="main-nav" class="fadeInDown animated">
+						<div class="row-fluid">
+				<div class="span5">
+					<h1><a href="index.html">Yufei (Andy) Chen</a></h1>
+				</div>
+				<nav class="span7">
+					<ul class="nav pull-right">
+						<li class="active"><a href="../index.html">Home</a></li>
+						<li><a href="/doing">Doing</a></li>
+						<li><a href="../publication">Publication</a></li>
+						<li><a class="fancybox-frame fancybox.iframe" data-rel="fancybox-iframe" href="../files/cv.pdf">Full Vita &nbsp<img src="http://www.froggybottompub.com/img/pdf_icon.png" style="width: 20px; height: 20px;"></img></a></li>
+						<li><a href="http://chanyufei.com/wiki">Knowledge Base &nbsp<img src="http://www.iconattitude.com/icons/open_icon_library/apps/png/256/dokuwiki.png" style="width: 20px; height: 20px;"></img></a></li>
+						<li><a href="blog">Blog</a></li>
+					</ul>
+				</nav>
+			</div>
+
+		</nav>
+	</div>
+</header>
+    				<div class="container-fluid fadeInUp animated">
+
+			<div class="row-fluid">
+				<div class="span12 top-title">
+					<h2>What I Am ...</h2>
+				</div>
+				
+					<h2 class="redacted">Using</h2>
+					<ul>
+						<!-- Coursera -->
+						<li><img src="http://www.coursera.org/favicon.ico" alt="Coursera" style="width: 15px; height: 15px;">&nbsp</img><a href="http://www.coursera.org" target="_blank">Coursera</a> - for e-learning new knowledge</li>
+
+						<!-- Asana -->
+						<li><img src="http://d1gwm4cf8hecp4.cloudfront.net/images/favicon.ico" alt="Asana" style="width: 15px; height: 15px;">&nbsp</img><a href="http://www.asana.com" target="_blank">Asana</a> - for the management of my research projects</li>
+
+						<!-- Evernote -->
+						<li><img src="http://evernote.com/media/img/favicon_144.png" alt="Evernote" style="width: 15px; height: 15px;">&nbsp</img> <a href="http://www.evernote.com" target="_blank">Evernote</a> - for fast saving my online hunting results</li>
+						
+						<!-- Dropbox & ownCloud-->
+						<li><img src="https://dt8kf6553cww8.cloudfront.net/static/images/favicon-vflonlsct.ico" alt="Dropbox" style="width: 15px; height: 15px;">&nbsp</img> <a href="http://www.dropbox.com" target="_blank">Dropbox</a> and - <img src="http://endorphenium.de/wp-content/uploads/wp-favicons/cache/http/org/owncloud/favicon.png" alt="ownCloud" style="width: 15px; height: 15px;">&nbsp</img> <a href="http://www.owncloud.com" target="_blank">ownCloud</a> for the storage and synchronization of my data among computers</li>
+
+						<!-- Readcube -->
+						<li><img src="http://www.readcube.com/favicon.ico" alt="ReadCube" style="width: 15px; height: 15px;">&nbsp</img> <a href="http://www.readcube.com" target="_blank">ReadCube</a> - for making notes in literatures</li>
+
+						<!-- Researchgate -->
+						<li><img src="http://www.researchgate.net/favicon.ico" alt="Research Gate" style="width: 15px; height: 15px;">&nbsp</img> <a href="http://www.researchgate.net" target="_blank">Research Gate</a> - for communicating with other researchers</li>
+
+						<!-- Feedly -->
+						<li><img src="http://icondatabase.net/sites/default/files/icons/aeolus-hd-21621/aeolus-hd-feedly-icon-21681.png" style="width: 15px; height: 15px;">&nbsp</img> <a href="http://www.feedly.com/home#my" target="_blank">Feedly</a> - for reading RSS</li>
+
+						<!-- DokuWiki -->
+						<li><img src="http://www.softaculous.com/blog/wp-content/uploads/2013/03/dokuwiki-logo-297x300.png" style="width: 15px; height: 15px;">&nbsp</img> <a href="https://www.dokuwiki.org/" target="_blank">DokuWiki</a> - for storing and updating my scientific knowledge</li>
+
+						<!-- Hackpad & Workflowy & Mural.ly -->
+						<li><img src="https://icons.duckduckgo.com/i/hackpad.com.ico" style="width: 15px; height: 15px;">&nbsp</img> <a href="https://hackpad.com/" target="_blank">Hackpad</a>&nbsp <img src="http://1.bp.blogspot.com/-Joh2PkaqLEI/TfuWJL-3emI/AAAAAAAABZI/TN73cQzdrns/s1600/128.png" style="width: 15px; height: 15px;">&nbsp</img> <a href="https://www.workflowy.com/" target="_blank">Workflowy</a> and <img src="https://c336017.ssl.cf1.rackcdn.com/icon-murally.png" style="width: 15px; height: 15px;">&nbsp</img> <a href="https://www.mural.ly/" target="_blank">Mural.ly</a> - for brainstorming</li>
+
+						<!-- Geomagic -->
+						<li><img src="../images/gd-2014.png" style="width: 15px; height: 15px;">&nbsp</img> <a href="https://www.workflowy.com/" target="_blank">Geomagic Design 2014</a> - for 3D modeling</li>
+
+						<!-- Instapaper -->
+						<li><img src="http://www.marco.org/media/2011/10/ip4-icon.png" style="width: 15px; height: 15px;">&nbsp</img> <a href="http://www.instapaper.com/" target="_blank">Instapaper</a> - for saving-it-for-later reading</li>
+
+						<!-- Penflip -->
+						<li><img src="https://www.penflip.com/favicon.ico" style="width: 15px; height: 15px;">&nbsp</img> <a href="https://www.penflip.com" target="_blank">Penflip</a> - for writing thesis draft</li>
+
+						<!-- Coffitivity -->
+						<li><img src="https://www.coffitivity.com/favicon.ico" style="width: 15px; height: 15px;">&nbsp</img> <a href="https://www.coffitivity.com" target="_blank">Coffitivity</a> - for enhancing my productivity during work (esp. reading & writing)</li>
+
+						<!-- f.lux -->
+						<li><img src="http://justgetflux.com/favicon.ico" style="width: 15px; height: 15px;">&nbsp</img> <a href="http://www.justgetflux.com" target="_blank">f.lux</a> - for protecting my eyes</li>
+
+					</ul>
+					
+					<!--Twitter-->
+					</br><h2 class="redacted">Twitting</h2>
+
+               			 &nbsp;&nbsp; <a class="twitter-timeline" data-theme="light" href="https://twitter.com/search?q=%23andyresearch" width="600" height="400" data-link-color="#d61a43" data-widget-id="360417897622929411" data-chrome="nofooter noborders noscrollbar transparent">Tweets</a>
+                			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>		
+
+					<h2 class="redacted">Reading</h2>
+					<ul>
+  						<!--Vaccinology Principles and Practice-->
+  						<li><a href="http://site.ebrary.com.proxy2.lib.umanitoba.ca/lib/umanitoba/docDetail.action?docID=10580247" target="_blank"><img src="../images/vpp-2012.png" style="width: 40px; height: 50px;" >&nbsp</img> Vaccinology Principles and Practice (2012)</a></br></br> </li>
+
+  						<!--New Prevention Technologies and Vaccine Development-->
+  						<li><a href="http://site.ebrary.com.proxy2.lib.umanitoba.ca/lib/umanitoba/docDetail.action?docID=10406171" target="_blank"><img src="../images/nptvd-2010.png" style="width: 40px; height: 50px;">&nbsp</img> New Prevention Technologies and Vaccine Development (2010)</a></br></br> </li>
+
+  						<!--Development of Vaccines - from Discovery to Clinic Testing-->
+  						<li><a href="http://site.ebrary.com.proxy2.lib.umanitoba.ca/lib/umanitoba/docDetail.action?docID=10484637" target="_blank"><img src="../images/DVDCT-2011.png" style="width: 40px; height: 50px;">&nbsp</img> Development of Vaccines - from Discovery to Clinic Testing (2011)</a></br></br> </li>
+
+  						<!--Polyurethane Elastomers - From Morphology to Mechanical Aspects-->
+  						<li><a href="http://link.springer.com.proxy2.lib.umanitoba.ca/book/10.1007/978-3-7091-0514-6/page/1" target="_blank"><img src="http://i.ebayimg.com/00/$T2eC16d,!)kE9s4,BL)rBRVncK78sQ~~_35.JPG" style="width: 40px; height: 50px;">&nbsp</img> Polyurethane Elastomers - From Morphology to Mechanical Aspects (2011)</a></br></br> </li>
+
+  						<!--Castable Polyurethane Elastomers-->
+  						<li><a href="http://site.ebrary.com.proxy2.lib.umanitoba.ca/lib/umanitoba/docDetail.action?docID=10228593" target="_blank"><img src="http://bks9.books.google.ca/books?id=zfGNooITxxMC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71oaljussgE0UHVjEdfvKT5mhgcXsVoeiI8ADJw6dMRYVCuKilK_cjnhrXj0qDHpQ7KlqVMS-MHueXrP6Hn4evjTAYux1o2OSeWlSm7xCWRzLpRrXTq_H357G6wbSix5lShOV1-" style="width: 40px; height: 50px;">&nbsp</img> Castable Polyurethane Elastomers (2008)</a></br></br> </li>
+
+  						<!--Castable Polyurethane Elastomers-->
+  						<li><a href="http://chimera.labs.oreilly.com/books/1230000000561/index.html" target="_blank"><img src="http://lt-file.b0.upaiyun.com/files/2013/06/gpg.png" style="width: 40px; height: 50px;">&nbsp</img> Git Pocket Guide (2013)</a></br> </li>
+					</ul>
+	
+				
+			</div>
+
+		</div>
+		</div>
+ 		</div> <!-- #wrapper -->
+ 		    <footer>
+      <div class="row-fluid">
+            <div class="container">
+
+        <div class="span6 ">
+          <div class="foot-head">About & Coypright</div> 
+            <div class="foot-content" align="justify">This website is hosted on <a href="http://www.digitalocean.com/" target="_blank">DigitalOcean</a> and powered by <a href="http://jekyllrb.com/">Jekyll</a>.  
+            All content on this website is <b><font color="2D8DBA">&copy;  2014  - Yufei(Andy) Chen</font></b>, all rights reserved. Any views described here are my own and do not necessarily reflect the views of my employers, my colleagues, or any funding adjacencies.</div>
+        </div>
+
+        <div class="span3">
+          <div class="foot-head">Page & Profile</div> 
+             <li class="foot-list foot-link"><a href="index.html">Home</a></li>
+             <li class="foot-list"><a href="doing.html">Doing</a></li>
+             <li class="foot-list"><a href="publication.html">Publication</a></li>
+             <li class="foot-list"><a href="http://scholar.google.ca/citations?user=S0eQllwAAAAJ&hl">Google Scholar</a></li>
+        </div>
+
+        <div class="span3">
+          <div class="foot-head">Project & Other</div> 
+             <li class="foot-list"><a href="hubmed-mod">Hubmed Mod</a></li>
+             <li class="foot-list"><a href="">MB CC-CRS Student Chapter</a></li>
+        </div>
+
+            </div>
+      </div></br>
+    </footer>
+
+ 		<script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.8.1.min.js"><\/script>')</script>
+<script src="/js/vendor/modernizr-2.6.1.min.js"></script>
+
+<script src="/fonts/ss-social.js"></script>
+
+ 	</body>
+ </html>
